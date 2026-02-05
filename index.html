@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kritika, Will You Be My Valentine?</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .intro {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #ff4b6e, #ff9a9e);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      font-size: 40px;
+      z-index: 10;
+      animation: fadeOut 2s ease 3s forwards;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; pointer-events: none; }
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 22px;
+      animation: float 6s linear infinite;
+      opacity: 0.85;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+
+    .card {
+      background: white;
+      padding: 45px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      z-index: 2;
+    }
+
+    h1 {
+      color: #ff4b6e;
+      font-size: 34px;
+    }
+
+    p {
+      color: #555;
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 90px;
+    }
+
+    button {
+      padding: 14px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    button:hover { transform: scale(1.1); }
+
+    #yes { background: #ff4b6e; color: white; margin-right: 20px; }
+
+    #no { background: #ddd; position: absolute; }
+
+    .love {
+      font-size: 28px;
+      color: #ff4b6e;
+      display: none;
+      margin-top: 25px;
+      animation: pop 0.5s ease;
+    }
+
+    @keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
+  </style>
+</head>
+<body>
+
+  <div class="intro">💖 I Love You Kritika 💖</div>
+
+  <audio id="bgMusic" autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="card">
+    <h1>Kritika 💕</h1>
+    <p>Will you be my Valentine forever?</p>
+
+    <div class="buttons">
+      <button id="yes">Yes 😍</button>
+      <button id="no">No 🙈</button>
+    </div>
+
+    <div class="love" id="loveMsg">Yayyy Kritika! You made me the happiest 💖🥰</div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const loveMsg = document.getElementById("loveMsg");
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - 120);
+      const y = Math.random() * (window.innerHeight - 120);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    yesBtn.addEventListener("click", () => {
+      loveMsg.style.display = "block";
+    });
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 350);
+  </script>
+
+</body>
+</html>
